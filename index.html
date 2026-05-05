@@ -1,20 +1,46 @@
 <!DOCTYPE html>
-
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Tablero Ajedrez</title>
+    <title>Juego táctico</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<h1>Juego táctico</h1>
+<div class="container">
 
-<div class="ui">
-    <button onclick="reiniciarJuego()">Reiniciar</button>
+    <!-- PANEL 1 -->
+    <div class="panel">
+        <h3>Menú</h3>
+        <button onclick="reiniciarJuego()">Reiniciar</button>
+        <button onclick="nuevoJuego()">Nuevo mapa</button>
+    </div>
+
+    <!-- TABLERO -->
+    <div id="tablero"></div>
+
+    <!-- PANEL 2 (RECURSOS) -->
+<div class="panel">
+    <h3>Recursos</h3>
+
+    <table border="1" style="width:100%; text-align:center; color:white;">
+        <tr>
+            <th></th>
+            <th>🌲</th>
+            <th>🪙</th>
+            <th>🍖</th>
+            <th>👥</th>
+        </tr>
+        <tr id="j1"></tr>
+        <tr id="j2"></tr>
+        <tr id="j3"></tr>
+        <tr id="j4"></tr>
+    </table>
+
+    <br>
+    <div id="turno"></div>
+    <button onclick="siguienteTurno()">Siguiente turno</button>
 </div>
-
-<div id="tablero"></div>
 
 <script src="script.js"></script>
 </body>

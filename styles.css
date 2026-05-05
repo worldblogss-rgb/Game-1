@@ -1,56 +1,72 @@
 body {
-    text-align: center;
+    margin: 0;
     font-family: Arial;
+}
+
+.container {
+    display: flex;
+}
+
+/* PANEL */
+.panel {
+    width: 180px;
+    background: #222;
+    color: white;
+    padding: 10px;
+    height: 100vh;
+}
+
+.panel button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    border: none;
+    background: #444;
+    color: white;
+}
+
+.panel button:hover {
+    background: #666;
 }
 
 /* TABLERO */
 #tablero {
     display: grid;
-    grid-template-columns: repeat(8, 60px);
-    grid-template-rows: repeat(8, 60px);
+    grid-template-columns: repeat(12, 50px);
+    grid-template-rows: repeat(12, 50px);
     gap: 2px;
-    margin: 20px auto;
-    width: fit-content; /* 🔥 IMPORTANTE */
+    padding: 10px;
 }
 
 /* CASILLAS */
 .casilla {
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 28px;
+    font-size: 20px;
 }
 
-/* TERRENOS */
-.agua {
-    background-color: #3498db;
-}
+/* TERRENO */
+.agua { background: #3498db; }
+.llanura { background: #7ed957; }
+.montaña { background: #8d6e63; }
 
-.llanura {
-    background-color: #7ed957;
+/* RECURSOS (bloqueados) */
+.madera,
+.oro,
+.comida {
+    background-color: #aa0000 !important;
+    color: white;
+    font-size: 18px;
 }
-
-.montaña {
-    background-color: #8d6e63;
-}
-
-/* MOVIMIENTO */
 .posible {
     outline: 3px solid yellow;
 }
-.ui {
-    margin: 10px;
-}
-
-button {
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-/* ciudad */
-.ciudad {
-    font-size: 26px;
-}
+/* borde por jugador */
+.j0 { outline: 3px solid white; }
+.j1 { outline: 3px solid cyan; }
+.j2 { outline: 3px solid yellow; }
+.j3 { outline: 3px solid orange; }
