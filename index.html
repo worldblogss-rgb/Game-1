@@ -1,48 +1,194 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Juego táctico</title>
-    <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<title>Juego Estrategia</title>
+
+<style>
+body{
+    background:#222;
+    color:white;
+    font-family:Arial;
+    display:flex;
+}
+
+/* TABLERO */
+#tablero{
+    display:grid;
+    grid-template-columns: repeat(16, 40px);
+    grid-template-rows: repeat(16, 40px);
+    gap:2px;
+    margin:10px;
+}
+
+.casilla{
+    width:40px;
+    height:40px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:16px;
+    cursor:pointer;
+}
+
+/* TERRENOS */
+.llanura{ background:#3a5f3a; }
+.agua{ background:#2a4f7a; }
+.montaña{ background:#5a3a1f; }
+
+/* SELECCIÓN */
+.posible{
+    outline:2px solid lime;
+}
+
+/* JUGADORES */
+.j0{ outline:2px solid white; }
+.j1{ outline:2px solid cyan; }
+.j2{ outline:2px solid yellow; }
+.j3{ outline:2px solid orange; }
+
+/* PANEL */
+.panel{
+    margin:10px;
+    width:350px;
+}
+
+table{
+    width:100%;
+    text-align:center;
+    border-collapse:collapse;
+}
+
+td, th{
+    border:1px solid #555;
+    padding:4px;
+}
+
+input{
+    width:50px;
+}
+</style>
+
 </head>
+
 <body>
 
-<div class="container">
+<!-- TABLERO -->
+<div id="tablero"></div>
 
-    <!-- PANEL 1 -->
-    <div class="panel">
-        <h3>Menú</h3>
-        <button onclick="reiniciarJuego()">Reiniciar</button>
-        <button onclick="nuevoJuego()">Nuevo mapa</button>
-    </div>
-
-    <!-- TABLERO -->
-    <div id="tablero"></div>
-
-    <!-- PANEL 2 (RECURSOS) -->
+<!-- PANEL DERECHO -->
 <div class="panel">
-    <h3>Recursos</h3>
 
-    <table border="1" style="width:100%; text-align:center; color:white;">
-        <tr>
-            <th></th>
-            <th>🌲</th>
-            <th>🪙</th>
-            <th>🍖</th>
-            <th>👥</th>
-        </tr>
-        <tr id="j1"></tr>
-        <tr id="j2"></tr>
-        <tr id="j3"></tr>
-        <tr id="j4"></tr>
-    </table>
+<h3>Gestión</h3>
 
-    <br>
-    <div id="turno"></div>
-    <button onclick="siguienteTurno()">Siguiente turno</button>
+<table>
+<tr>
+    <th>Elemento</th>
+    <th style="color:white">J1</th>
+    <th style="color:cyan">J2</th>
+    <th style="color:yellow">J3</th>
+    <th style="color:orange">J4</th>
+    <th>Cant</th>
+</tr>
+
+<!-- RECURSOS -->
+<tr>
+    <td>🌲</td>
+    <td id="m1"></td>
+    <td id="m2"></td>
+    <td id="m3"></td>
+    <td id="m4"></td>
+    <td></td>
+</tr>
+
+<tr>
+    <td>🪙</td>
+    <td id="o1"></td>
+    <td id="o2"></td>
+    <td id="o3"></td>
+    <td id="o4"></td>
+    <td></td>
+</tr>
+
+<tr>
+    <td>🍖</td>
+    <td id="c1"></td>
+    <td id="c2"></td>
+    <td id="c3"></td>
+    <td id="c4"></td>
+    <td></td>
+</tr>
+
+<!-- UNIDADES (CONTADOR) -->
+<tr>
+    <td>👷</td>
+    <td id="u_aldeano1"></td>
+    <td id="u_aldeano2"></td>
+    <td id="u_aldeano3"></td>
+    <td id="u_aldeano4"></td>
+    <td><input id="q_aldeano" type="number" value="0"></td>
+</tr>
+
+<tr>
+    <td>🐎</td>
+    <td id="u_caballo1"></td>
+    <td id="u_caballo2"></td>
+    <td id="u_caballo3"></td>
+    <td id="u_caballo4"></td>
+    <td><input id="q_caballo" type="number" value="0"></td>
+</tr>
+
+<tr>
+    <td>🏹</td>
+    <td id="u_arquero1"></td>
+    <td id="u_arquero2"></td>
+    <td id="u_arquero3"></td>
+    <td id="u_arquero4"></td>
+    <td><input id="q_arquero" type="number" value="0"></td>
+</tr>
+
+<tr>
+    <td>⚔️</td>
+    <td id="u_caballero1"></td>
+    <td id="u_caballero2"></td>
+    <td id="u_caballero3"></td>
+    <td id="u_caballero4"></td>
+    <td><input id="q_caballero" type="number" value="0"></td>
+</tr>
+
+<tr>
+    <td>💣</td>
+    <td id="u_catapulta1"></td>
+    <td id="u_catapulta2"></td>
+    <td id="u_catapulta3"></td>
+    <td id="u_catapulta4"></td>
+    <td><input id="q_catapulta" type="number" value="0"></td>
+</tr>
+
+<!-- EDIFICIOS -->
+<tr>
+    <td>🏰</td>
+    <td id="b1"></td>
+    <td id="b2"></td>
+    <td id="b3"></td>
+    <td id="b4"></td>
+    <td></td>
+</tr>
+
+</table>
+
+<br>
+
+<div id="turno"></div>
+
+<br>
+
+<button onclick="siguienteTurno()">Siguiente turno</button>
+
 </div>
 
+<!-- SCRIPT (IMPORTANTE AL FINAL) -->
 <script src="script.js"></script>
-</body>
 
+</body>
 </html>

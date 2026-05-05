@@ -70,3 +70,16 @@ body {
 .j1 { outline: 3px solid cyan; }
 .j2 { outline: 3px solid yellow; }
 .j3 { outline: 3px solid orange; }
+
+#tablero {
+    display: grid;
+    grid-template-columns: repeat(16, 40px);
+    grid-template-rows: repeat(16, 40px);
+    gap: 2px;
+}
+
+.casilla {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+}
