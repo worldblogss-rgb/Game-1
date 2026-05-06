@@ -15,19 +15,19 @@ body{
 /* TABLERO */
 #tablero{
     display:grid;
-    grid-template-columns: repeat(16, 40px);
-    grid-template-rows: repeat(16, 40px);
+    grid-template-columns: repeat(21, 35px);
+    grid-template-rows: repeat(21, 35px);
     gap:2px;
     margin:10px;
 }
 
 .casilla{
-    width:40px;
-    height:40px;
+    width:35px;
+    height:35px;
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:16px;
+    font-size:14px;
     cursor:pointer;
 }
 
@@ -36,159 +36,80 @@ body{
 .agua{ background:#2a4f7a; }
 .montaña{ background:#5a3a1f; }
 
-/* SELECCIÓN */
-.posible{
-    outline:2px solid lime;
-}
+.posible{ outline:2px solid lime; }
 
-/* JUGADORES */
 .j0{ outline:2px solid white; }
 .j1{ outline:2px solid cyan; }
 .j2{ outline:2px solid yellow; }
 .j3{ outline:2px solid orange; }
 
-/* PANEL */
 .panel{
     margin:10px;
-    width:350px;
+    width:320px;
 }
 
 table{
     width:100%;
     text-align:center;
     border-collapse:collapse;
+    margin-bottom:10px;
 }
 
-td, th{
+td,th{
     border:1px solid #555;
     padding:4px;
 }
 
 input{
-    width:50px;
+    width:45px;
 }
 </style>
-
 </head>
 
 <body>
 
-<!-- TABLERO -->
-<div id="tablero"></div>
-
-<!-- PANEL DERECHO -->
 <div class="panel">
-
-<h3>Gestión</h3>
-
+<h3>Unidades</h3>
 <table>
-<tr>
-    <th>Elemento</th>
-    <th style="color:white">J1</th>
-    <th style="color:cyan">J2</th>
-    <th style="color:yellow">J3</th>
-    <th style="color:orange">J4</th>
-    <th>Cant</th>
-</tr>
-
-<!-- RECURSOS -->
-<tr>
-    <td>🌲</td>
-    <td id="m1"></td>
-    <td id="m2"></td>
-    <td id="m3"></td>
-    <td id="m4"></td>
-    <td></td>
-</tr>
-
-<tr>
-    <td>🪙</td>
-    <td id="o1"></td>
-    <td id="o2"></td>
-    <td id="o3"></td>
-    <td id="o4"></td>
-    <td></td>
-</tr>
-
-<tr>
-    <td>🍖</td>
-    <td id="c1"></td>
-    <td id="c2"></td>
-    <td id="c3"></td>
-    <td id="c4"></td>
-    <td></td>
-</tr>
-
-<!-- UNIDADES (CONTADOR) -->
-<tr>
-    <td>👷</td>
-    <td id="u_aldeano1"></td>
-    <td id="u_aldeano2"></td>
-    <td id="u_aldeano3"></td>
-    <td id="u_aldeano4"></td>
-    <td><input id="q_aldeano" type="number" value="0"></td>
-</tr>
-
-<tr>
-    <td>🐎</td>
-    <td id="u_caballo1"></td>
-    <td id="u_caballo2"></td>
-    <td id="u_caballo3"></td>
-    <td id="u_caballo4"></td>
-    <td><input id="q_caballo" type="number" value="0"></td>
-</tr>
-
-<tr>
-    <td>🏹</td>
-    <td id="u_arquero1"></td>
-    <td id="u_arquero2"></td>
-    <td id="u_arquero3"></td>
-    <td id="u_arquero4"></td>
-    <td><input id="q_arquero" type="number" value="0"></td>
-</tr>
-
-<tr>
-    <td>⚔️</td>
-    <td id="u_caballero1"></td>
-    <td id="u_caballero2"></td>
-    <td id="u_caballero3"></td>
-    <td id="u_caballero4"></td>
-    <td><input id="q_caballero" type="number" value="0"></td>
-</tr>
-
-<tr>
-    <td>💣</td>
-    <td id="u_catapulta1"></td>
-    <td id="u_catapulta2"></td>
-    <td id="u_catapulta3"></td>
-    <td id="u_catapulta4"></td>
-    <td><input id="q_catapulta" type="number" value="0"></td>
-</tr>
-
-<!-- EDIFICIOS -->
-<tr>
-    <td>🏰</td>
-    <td id="b1"></td>
-    <td id="b2"></td>
-    <td id="b3"></td>
-    <td id="b4"></td>
-    <td></td>
-</tr>
-
+<tr><th>Unidad</th><th>Costo</th><th>Mov</th><th>Fuerza</th></tr>
+<tr><td>👷</td><td>20🌲 10🍖</td><td>1</td><td>1</td></tr>
+<tr><td>🐎</td><td>30🍖</td><td>2</td><td>3</td></tr>
+<tr><td>🏹</td><td>30🌲 20🍖</td><td>1</td><td>2</td></tr>
+<tr><td>⚔️</td><td>40🪙 30🍖</td><td>1</td><td>4</td></tr>
+<tr><td>💣</td><td>50🌲 50🪙</td><td>1</td><td>5</td></tr>
 </table>
-
-<br>
-
-<div id="turno"></div>
-
-<br>
-
-<button onclick="siguienteTurno()">Siguiente turno</button>
-
 </div>
 
-<!-- SCRIPT (IMPORTANTE AL FINAL) -->
-<script src="script.js"></script>
+<div id="tablero"></div>
 
+<div class="panel">
+<table>
+<tr>
+<th></th>
+<th>J1 <input type="checkbox" id="chk0" checked></th>
+<th>J2 <input type="checkbox" id="chk1" checked></th>
+<th>J3 <input type="checkbox" id="chk2" checked></th>
+<th>J4 <input type="checkbox" id="chk3" checked></th>
+<th>Cant</th>
+</tr>
+
+<tr><td>🌲</td><td id="m1"></td><td id="m2"></td><td id="m3"></td><td id="m4"></td><td></td></tr>
+<tr><td>🪙</td><td id="o1"></td><td id="o2"></td><td id="o3"></td><td id="o4"></td><td></td></tr>
+<tr><td>🍖</td><td id="c1"></td><td id="c2"></td><td id="c3"></td><td id="c4"></td><td></td></tr>
+
+<tr><td>👷</td><td id="u_aldeano1"></td><td id="u_aldeano2"></td><td id="u_aldeano3"></td><td id="u_aldeano4"></td><td><input id="q_aldeano" type="number" value="0"></td></tr>
+<tr><td>🐎</td><td id="u_caballo1"></td><td id="u_caballo2"></td><td id="u_caballo3"></td><td id="u_caballo4"></td><td><input id="q_caballo" type="number" value="0"></td></tr>
+<tr><td>🏹</td><td id="u_arquero1"></td><td id="u_arquero2"></td><td id="u_arquero3"></td><td id="u_arquero4"></td><td><input id="q_arquero" type="number" value="0"></td></tr>
+<tr><td>⚔️</td><td id="u_caballero1"></td><td id="u_caballero2"></td><td id="u_caballero3"></td><td id="u_caballero4"></td><td><input id="q_caballero" type="number" value="0"></td></tr>
+<tr><td>💣</td><td id="u_catapulta1"></td><td id="u_catapulta2"></td><td id="u_catapulta3"></td><td id="u_catapulta4"></td><td><input id="q_catapulta" type="number" value="0"></td></tr>
+
+<tr><td>🏰</td><td id="b1"></td><td id="b2"></td><td id="b3"></td><td id="b4"></td><td></td></tr>
+</table>
+
+<div id="turno"></div>
+<button onclick="siguienteTurno()">Siguiente turno</button>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>

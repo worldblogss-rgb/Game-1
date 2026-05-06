@@ -1,85 +1,61 @@
-body {
-    margin: 0;
-    font-family: Arial;
-}
-
-.container {
-    display: flex;
-}
-
-/* PANEL */
-.panel {
-    width: 180px;
-    background: #222;
-    color: white;
-    padding: 10px;
-    height: 100vh;
-}
-
-.panel button {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    cursor: pointer;
-    border: none;
-    background: #444;
-    color: white;
-}
-
-.panel button:hover {
-    background: #666;
+body{
+    background:#222;
+    color:white;
+    font-family:Arial;
+    display:flex;
 }
 
 /* TABLERO */
-#tablero {
-    display: grid;
-    grid-template-columns: repeat(12, 50px);
-    grid-template-rows: repeat(12, 50px);
-    gap: 2px;
-    padding: 10px;
+#tablero{
+    display:grid;
+    grid-template-columns: repeat(21, 35px);
+    grid-template-rows: repeat(21, 35px);
+    gap:2px;
+    margin:10px;
 }
 
-/* CASILLAS */
-.casilla {
-    width: 50px;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 20px;
+.casilla{
+    width:35px;
+    height:35px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:14px;
+    cursor:pointer;
 }
 
-/* TERRENO */
-.agua { background: #3498db; }
-.llanura { background: #7ed957; }
-.montaña { background: #8d6e63; }
+/* TERRENOS */
+.llanura{ background:#3a5f3a; }
+.agua{ background:#2a4f7a; }
+.montaña{ background:#5a3a1f; }
 
-/* RECURSOS (bloqueados) */
-.madera,
-.oro,
-.comida {
-    background-color: #aa0000 !important;
-    color: white;
-    font-size: 18px;
-}
-.posible {
-    outline: 3px solid yellow;
-}
-/* borde por jugador */
-.j0 { outline: 3px solid white; }
-.j1 { outline: 3px solid cyan; }
-.j2 { outline: 3px solid yellow; }
-.j3 { outline: 3px solid orange; }
+/* MOVIMIENTO */
+.posible{ outline:2px solid lime; }
 
-#tablero {
-    display: grid;
-    grid-template-columns: repeat(16, 40px);
-    grid-template-rows: repeat(16, 40px);
-    gap: 2px;
+/* JUGADORES */
+.j0{ outline:2px solid white; }
+.j1{ outline:2px solid cyan; }
+.j2{ outline:2px solid yellow; }
+.j3{ outline:2px solid orange; }
+
+/* PANEL */
+.panel{
+    margin:10px;
+    width:320px;
 }
 
-.casilla {
-    width: 40px;
-    height: 40px;
-    font-size: 16px;
+table{
+    width:100%;
+    text-align:center;
+    border-collapse:collapse;
+    margin-bottom:10px;
+}
+
+td,th{
+    border:1px solid #555;
+    padding:4px;
+}
+
+input{
+    width:45px;
 }
